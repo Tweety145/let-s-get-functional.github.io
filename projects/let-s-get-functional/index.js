@@ -19,20 +19,118 @@
  *    IMPORTANT: Make sure you replace <YOUR_GITHUB_FOLDER with your actual github folder name that is in your workspace.
  */
 
-var maleCount = function(array) {
+function maleCount(customers) {
+    const maleCustomers = customers.filter(customer => customer.gender === 'male');
+
+    
+    return maleCustomers.length;
+  }
   
-};
+  
+  const count = maleCount(customerArray);
+  console.log(count);
+   
+    
+    
+  function femaleCount(customers) {
+    const femaleCustomers = customers.filter(customer => customer.gender === 'female');
+    return femaleCustomers.length;
+  }
 
-var femaleCount;
+  const count1 = femaleCount(customerArray);
+  console.log(count1);
 
-var oldestCustomer;
+  
+   
+
+
+function oldestCustomer(customers) {
+    
+    if (!customers || customers.length === 0) {
+      return ""; 
+    }
+  
+    let oldestPerson = customers[0]; 
+  
+    
+    for (let i = 1; i < customers.length; i++) {
+      const currentPerson = customers[i];
+      if (currentPerson.age > oldestPerson.age) {
+        oldestPerson = currentPerson; 
+      }
+    }
+  
+    
+    return oldestPerson.name;
+  };
+    
 
 var youngestCustomer;
-
+function youngestCustomer(customers) {
+    
+    if (!customers || customers.length === 0) {
+      return "";
+    }
+  
+    let youngestAge = Infinity;
+    let youngestName = "";
+  
+    for (const customer of customers) {
+      
+      if (customer.age < youngestAge) {
+        youngestAge = customer.age;
+        youngestName = customer.name; 
+      }
+    }
+  
+    return youngestName;
+  }
 var averageBalance;
+function averageBalance(customers) {
+    // Check if the customers array is empty to avoid division by zero.
+    if (customers.length === 0) {
+      return 0;
+    }
+  
+    // Calculate the sum of all customer balances.
+    const totalBalance = customers.reduce((sum, customer) => {
+      // Assuming each customer object has a 'balance' property.
+      return sum + customer.balance;
+    }, 0);
+  
+    // Divide the total balance by the number of customers to find the average.
+    const average = totalBalance / customers.length;
+  
+    return average;
+  }
+  
+   
 
 var firstLetterCount;
-
+const firstLetterCount = (customers, letter) => {
+    // Convert the input letter to lowercase once for case-insensitive comparison
+    const lowerCaseLetter = letter.toLowerCase();
+    let count = 0;
+  
+    for (let i = 0; i < customers.length; i++) {
+      const customerName = customers[i];
+  
+      // Check if the name is a non-empty string before accessing the first character
+      if (typeof customerName === 'string' && customerName.length > 0) {
+        // Get the first character of the name and convert it to lowercase
+        const firstChar = customerName[0].toLowerCase();
+  
+        // Compare the lowercase first character with the lowercase input letter
+        if (firstChar === lowerCaseLetter) {
+          count++;
+        }
+      }
+    }
+  
+    return count;
+  };
+  
+    
 var friendFirstLetterCount;
 
 var friendsCount;
